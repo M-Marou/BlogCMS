@@ -1,3 +1,4 @@
+<?php include("path.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
 
 <body>
 
-    <?php include("app/includes/nav.php") ?>
+    <?php include(ROOT_PATH . "/app/includes/nav.php") ?>
 
   <!-- Page wrapper -->
   <div class="page-wrapper">
