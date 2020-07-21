@@ -44,6 +44,7 @@ function selectALL($table , $conditions = []){
     }
 }
 
+// function to return only one record from database table: 
 function selectOne($table , $conditions){
 
     global $conn;
@@ -65,11 +66,31 @@ function selectOne($table , $conditions){
         return $records;
 }
 
-$conditions = [
-    'admin' => 0,
-    'username' => 'marou'
+function create($table, $data){
+    global $conn;
+    // $sql = "INSERT INTO users SET username=?, admin=?, email=?, password=?"
+    $sql = "INSERT INTO $table SET ";
+    $i = 0;
+    foreach ($data as $key => $value){
+        if($i===0){
+            $sql = $sql . " $key=?";
+        } else {
+            $sql = $sql . ", $key=?";
+        }
+        $i++;
+    }
+    $stmnt = executeQuery($sql, $data);
+    $id = $stmnt->insert_id;
+    return $id;
+}
+
+$data = [
+    'username' => 'marone',
+    'admin' => 1,
+    'email' => 'marouane.moumni20@gmail.com',
+    'password' => 'adminmar'
 ];
 
-$users = selectOne('users', $conditions);
+$id = create('users', $data);
 
-dd($users);
+dd($id);
