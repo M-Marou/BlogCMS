@@ -66,6 +66,7 @@ function selectOne($table , $conditions){
         return $records;
 }
 
+// function to create data : 
 function create($table, $data){
     global $conn;
     // $sql = "INSERT INTO users SET username=?, admin=?, email=?, password=?"
@@ -84,13 +85,44 @@ function create($table, $data){
     return $id;
 }
 
-$data = [
-    'username' => 'marone',
-    'admin' => 1,
-    'email' => 'marouane.moumni20@gmail.com',
-    'password' => 'adminmar'
-];
+// function to update data : 
+function update($table, $id,$data){
+    global $conn;
+    // $sql = "UPDATE users SET username=?, admin=?, email=?, password=? WHERE id=?"
+    $sql = "UPDATE $table SET ";
+    $i = 0;
+    foreach ($data as $key => $value){
+        if($i===0){
+            $sql = $sql . " $key=?";
+        } else {
+            $sql = $sql . ", $key=?";
+        }
+        $i++;
+    }
+    $sql = $sql . " WHERE id=?";
+    $data['id'] = $id;
+    $stmnt = executeQuery($sql, $data);
+    return $stmnt->affected_rows;
+}
 
-$id = create('users', $data);
+// function to delete data : 
+function delete($table, $id){
+    global $conn;
+    // $sql = "DELETE FROM users WHERE id=?"
+    $sql = "DELETE FROM $table WHERE id=?";
+    
+    $data['id'] = $id;
+    $stmnt = executeQuery($sql, [$id => $id]);
+    return $stmnt->affected_rows;
+}
+
+// $data = [
+//     'username' => 'fragment',
+//     'admin' => 0,
+//     'email' => 'marou.fragments@gmail.com',
+//     'password' => 'fragpass',
+// ];
+
+$id = delete('users', 1);
 
 dd($id);
