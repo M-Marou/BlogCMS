@@ -115,14 +115,3 @@ function delete($table, $id){
     $stmnt = executeQuery($sql, [$id => $id]);
     return $stmnt->affected_rows;
 }
-
-// $data = [
-//     'username' => 'fragment',
-//     'admin' => 0,
-//     'email' => 'marou.fragments@gmail.com',
-//     'password' => 'fragpass',
-// ];
-
-$id = delete('users', 1);
-
-dd($id);
