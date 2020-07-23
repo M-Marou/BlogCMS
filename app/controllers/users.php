@@ -2,6 +2,8 @@
     include(ROOT_PATH . "/app/database/db.php");
     include(ROOT_PATH . "/app/helpers/validateUser.php");
 
+    // form validation : 
+
     $username = '';
     $email = '';
     $password = '';
