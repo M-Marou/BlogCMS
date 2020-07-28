@@ -21,6 +21,7 @@
 <body>
 
     <?php include(ROOT_PATH . "/app/includes/nav.php") ?>
+    <?php include(ROOT_PATH . "/app/includes/messages.php") ?>
 
   <!-- Page wrapper -->
   <div class="page-wrapper">
